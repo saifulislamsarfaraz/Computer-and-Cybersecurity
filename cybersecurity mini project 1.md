@@ -237,7 +237,9 @@ openssl genrsa -aes256 -out root-ca/private/ca.key 4096
 openssl genrsa -aes256 -out sub-ca/private/sub-ca.key 4096
 openssl genrsa -out server/private/server.key 2048
 ```
-.....before do this make sure create sub-ca.conf root-ca.conf server.conf...
+before go to next command make sure create sub-ca.conf root-ca.conf server.conf all files are given to this repository ossl folder
+
+
 ```bash
 cd root-ca
 openssl req -config root-ca.conf -key private/ca.key -new -x509 -days 7200 -sha256 -extensions v3_ca -out certs/ca.crt
