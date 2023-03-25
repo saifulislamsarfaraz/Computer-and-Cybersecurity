@@ -212,7 +212,7 @@ systemctl enable named
 systemctl start named
 ```
 ```bash
-25. systemctl restart named
+systemctl restart named
 ```
 ```bash
 dig saifulislamsarfaraz.com
