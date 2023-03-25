@@ -220,3 +220,64 @@ dig saifulislamsarfaraz.com
 ```bash
 nslookup saifulislamsarfaraz.com
 ```
+
+## Step 5 Create certificate ans sign the site with the certificate
+```bash
+mkdir openssl
+cd ../openssl/
+mkdir {root-ca,sub-ca,server}
+mkdir {root-ca,sub-ca,server}/{private,certs,newcerts,crl,csr}
+```
+```bash
+touch root-ca/index
+touch sub-ca/index
+```
+```bash
+openssl genrsa -aes256 -out root-ca/private/ca.key 4096
+openssl genrsa -aes256 -out sub-ca/private/sub-ca.key 4096
+openssl genrsa -out server/private/server.key 2048
+```
+.....before do this make sure create sub-ca.conf root-ca.conf server.conf...
+```bash
+cd root-ca
+openssl req -config root-ca.conf -key private/ca.key -new -x509 -days 7200 -sha256 -extensions v3_ca -out certs/ca.crt
+#common name : Acme-RootCA
+```
+```bash
+cd ../sub-ca/
+openssl req -config sub-ca.conf -new -key private/sub-ca.key -sha256 -out csr/sub-ca.csr
+#common name : Acme
+```
+```bash
+cd ../root-ca
+openssl ca -config root-ca.conf -extensions v3_intermediate_ca -days 3650 -notext -in ../sub-ca/csr/sub-ca.csr -out ../sub-ca/certs/sub-ca.crt -rand_serial
+```
+```bash
+cd ../server
+openssl req -config server.conf -key private/server.key -new -sha256 -out csr/server.csr
+#common name : verysecureserver.com (your Domain Name)
+```
+```bash
+cd ../sub-ca
+openssl ca -config sub-ca.conf -extensions server_cert -days 365 -notext -in ../server/csr/server.csr -out ../server/certs/server.crt -rand_serial
+```
+```bash
+cd ..
+cat ./server/certs/server.crt ./sub-ca/certs/sub-ca.crt > chained.crt
+```
+
+
+# Revoke certificate
+```bash
+cd sub-ca
+openssl ca -config sub-ca.conf -revoke ../server/certs/server.crt
+```
+# Add CRL to server 
+```bash
+cd sub-ca
+nano crlnumber
+#type: 1002
+```
+```bash
+openssl ca -config sub-ca.conf -gencrl -out crl/rev.crl
+```
