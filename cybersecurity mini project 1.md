@@ -285,9 +285,11 @@ openssl ca -config sub-ca.conf -gencrl -out crl/rev.crl
 ```
 # Client Configuration
 ```bash
-1. sudo nano /etc/netplan/1-network-manager-all.yaml
-Copy and paste .............. to ...................
-......................................................
+sudo nano /etc/netplan/1-network-manager-all.yaml
+```
+
+Copy and paste to 
+```bash
 # Let NetworkManager manage all devices on this system
 network:
     version: 2
@@ -302,8 +304,8 @@ network:
             nameservers:
                 addresses: [192.168.246.6]
                 search: [saifulislamsarfaraz.com]
+```
 
-........................................................
 ```
 ```bash
  sudo netplan try
