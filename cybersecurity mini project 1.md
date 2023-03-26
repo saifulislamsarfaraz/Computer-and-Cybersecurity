@@ -28,6 +28,8 @@ ifconfig
 ```
 Change the hostname of the VM to “server”.
 Clone the virtual machine, turn it on and change the hostname to “client”.
+![image](https://user-images.githubusercontent.com/62655613/227762432-5ece2621-7c65-4565-b72a-61893741710b.png)
+
 
 # Configure Server 
 ## Step 3 Install Apache2 and Php
