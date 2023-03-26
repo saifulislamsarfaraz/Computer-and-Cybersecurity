@@ -283,3 +283,35 @@ nano crlnumber
 ```bash
 openssl ca -config sub-ca.conf -gencrl -out crl/rev.crl
 ```
+# Client Configuration
+```bash
+1. sudo nano /etc/netplan/1-network-manager-all.yaml
+Copy and paste .............. to ...................
+......................................................
+# Let NetworkManager manage all devices on this system
+network:
+    version: 2
+    renderer: NetworkManager
+    ethernets:
+        enp0s3:
+            dhcp4: no
+            addresses: [192.168.246.7/24]
+            routes:
+                - to: default
+                  via: 192.168.0.1
+            nameservers:
+                addresses: [192.168.246.6]
+                search: [saifulislamsarfaraz.com]
+
+........................................................
+```
+```bash
+ sudo netplan try
+ ```
+ ```bash
+sudo resolvectl status
+```
+```bash
+nslookup host/client ip
+```
+
