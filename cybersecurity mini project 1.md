@@ -321,3 +321,7 @@ nslookup host/client ip
 ```bash
 sudo a2enmod ssl
 ```
+
+```bash
+systemctl enable named
+```
