@@ -318,4 +318,6 @@ sudo resolvectl status
 ```bash
 nslookup host/client ip
 ```
-
+```bash
+sudo a2enmod ssl
+```
