@@ -176,7 +176,7 @@ systemctl enable named
 systemctl start named
 ```
 ```bash
-sudo nano /etc/bind/verysecureserver.com.zone
+sudo nano /etc/bind/saifulislamsarfaraz.com.zone
 ```
 copy paste ...... to ......
 .........................................................................................
