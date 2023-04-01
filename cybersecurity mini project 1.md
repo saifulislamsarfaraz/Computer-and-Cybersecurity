@@ -369,3 +369,5 @@ sudo apt install hping3 -y
 ```bash
 sudo hping3 -S --flood -V -p 80 192.168.246.6
 ```
+![image](https://user-images.githubusercontent.com/62655613/229309660-3712719c-0f00-4c55-8b68-0f84c8e4c9c6.png)
+
