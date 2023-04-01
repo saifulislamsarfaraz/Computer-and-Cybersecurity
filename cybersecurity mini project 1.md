@@ -279,31 +279,51 @@ before go to next command make sure create sub-ca.conf root-ca.conf server.conf 
 ```bash
 cd root-ca
 openssl req -config root-ca.conf -key private/ca.key -new -x509 -days 7200 -sha256 -extensions v3_ca -out certs/ca.crt
-#common name : Acme-RootCA
+#common name : Root-CA
+
+
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296098-fb26157c-72b9-427d-9f09-a68c6cbdff5b.png)
+
 ```bash
 cd ../sub-ca/
 openssl req -config sub-ca.conf -new -key private/sub-ca.key -sha256 -out csr/sub-ca.csr
 #common name : Acme
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296157-e42e6192-35e9-4aac-8e12-67ba05b8154f.png)
+
+
 ```bash
 cd ../root-ca
 openssl ca -config root-ca.conf -extensions v3_intermediate_ca -days 3650 -notext -in ../sub-ca/csr/sub-ca.csr -out ../sub-ca/certs/sub-ca.crt -rand_serial
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296218-7161b3c5-45d3-443f-8fcd-0897d9d41bc4.png)
+
 ```bash
 cd ../server
 openssl req -config server.conf -key private/server.key -new -sha256 -out csr/server.csr
 #common name : verysecureserver.com (your Domain Name)
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296261-dfb3c751-1eb1-4071-9db3-615d7bab8553.png)
+
 ```bash
 cd ../sub-ca
 openssl ca -config sub-ca.conf -extensions server_cert -days 365 -notext -in ../server/csr/server.csr -out ../server/certs/server.crt -rand_serial
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296300-cd7a8e20-bdbb-49ca-8d37-2af5ac508559.png)
+
 ```bash
 cd ..
 cat ./server/certs/server.crt ./sub-ca/certs/sub-ca.crt > chained.crt
 ```
+![image](https://user-images.githubusercontent.com/62655613/229296359-84ef6509-46c9-43d1-ab4e-10495eeb74a5.png)
+#### Site Configuration
+![image](https://user-images.githubusercontent.com/62655613/229296506-d71f2cae-443c-4a1a-bc09-075559072915.png)
 
+![image](https://user-images.githubusercontent.com/62655613/229296636-ced21d0b-898b-479c-856a-b29be1b9d624.png)
+
+
+![image](https://user-images.githubusercontent.com/62655613/229296588-ec98556d-cd6b-40e4-adf8-ee286a995d4e.png)
 
 # Revoke certificate
 ```bash
