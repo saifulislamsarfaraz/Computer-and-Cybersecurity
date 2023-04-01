@@ -358,5 +358,11 @@ sudo apt-get install snort -y
 ```
 
 ```bash
+sudo snort -A console -q -u snort -g snort -c /etc/snort/snort.conf -i enp0s3
+```
 
+### step2 Client
+
+```bash
+sudo apt install hping3 -y
 ```
