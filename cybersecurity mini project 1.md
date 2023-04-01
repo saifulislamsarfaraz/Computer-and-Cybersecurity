@@ -43,6 +43,8 @@ sudo apt-get install apache2
 ```bash
 service apache2 status
 ```
+![image](https://user-images.githubusercontent.com/62655613/229294305-6e32c918-efae-4797-8271-c05fd6b69bc5.png)
+
 install php
 ```bash
 sudo apt-get install php
@@ -72,6 +74,7 @@ sudo a2ensite main
 ```bash
 systemctl reload apache2
 ```
+![image](https://user-images.githubusercontent.com/62655613/229294454-bcd8ea00-9965-4f30-b584-44bfb92f5527.png)
 
 Restrat server: Starting And Stopping Apache and Database Server
 ```bash
@@ -113,6 +116,9 @@ search localdomain
 ```
 ........................................
 CTRL+O CTRL+X for exit
+
+![image](https://user-images.githubusercontent.com/62655613/229294629-467de732-2ba9-4a2b-a05f-79db1ca6e7b3.png)
+
 ```bash
 sudo nano /etc/named.conf
 ```
@@ -162,7 +168,8 @@ zone "." IN {
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
- 
+ ![image](https://user-images.githubusercontent.com/62655613/229294706-c7daca47-97e1-40b1-8e6a-1fb728afab00.png)
+
 ```bash
  dig google.com
 ```
@@ -194,6 +201,8 @@ $ORIGIN saifulislamsarfaraz.com.
 saifulislamsarfaraz.com. IN NS saifulislamsarfaraz.com.
 @ IN A 192.168.246.6 (your IP Address)
 ```
+![image](https://user-images.githubusercontent.com/62655613/229294901-35a52bdb-157d-492f-9831-930e85a2b9f3.png)
+
 .........................................................................................
 ```bash
 sudo nano /etc/bind/named.conf.local
@@ -206,6 +215,8 @@ zone "saifulislamsarfaraz.com" IN {
         file "/etc/bind/saifulislamsarfaraz.com.zone";
 };
 ```
+![image](https://user-images.githubusercontent.com/62655613/229295032-1651907c-4e1b-4016-9dad-94dee303ad88.png)
+
 ..............................................................................
 ```bash
 systemctl enable named
@@ -222,11 +233,12 @@ dig saifulislamsarfaraz.com
 ```bash
 nslookup saifulislamsarfaraz.com
 ```
+![image](https://user-images.githubusercontent.com/62655613/229295195-0e1211c8-093c-433d-b560-2b82198ffd68.png)
 
 ## Step 5 Create certificate ans sign the site with the certificate
 ```bash
 mkdir openssl
-cd ../openssl/
+cd openssl
 mkdir {root-ca,sub-ca,server}
 mkdir {root-ca,sub-ca,server}/{private,certs,newcerts,crl,csr}
 ```
@@ -234,13 +246,35 @@ mkdir {root-ca,sub-ca,server}/{private,certs,newcerts,crl,csr}
 touch root-ca/index
 touch sub-ca/index
 ```
+![image](https://user-images.githubusercontent.com/62655613/229295372-6056ff85-a9d9-4017-9a69-c6290a0f0ac8.png)
+
 ```bash
 openssl genrsa -aes256 -out root-ca/private/ca.key 4096
 openssl genrsa -aes256 -out sub-ca/private/sub-ca.key 4096
 openssl genrsa -out server/private/server.key 2048
 ```
+![image](https://user-images.githubusercontent.com/62655613/229295418-781f0418-7c34-4a30-98e9-aeb0faa94fe0.png)
+```bash
+cd root-ca
+touch root-ca.conf
+```
+```bash
+cd ../sub-ca
+touch sub-ca.conf
+```
+```bash
+cd ../server
+touch server.conf
+```
 before go to next command make sure create sub-ca.conf root-ca.conf server.conf all files are given to this repository ossl folder
+![image](https://user-images.githubusercontent.com/62655613/229295811-02f62a79-72a0-4487-beed-79026a87ea65.png)
+![image](https://user-images.githubusercontent.com/62655613/229295829-b0f88c5f-9ddb-4592-8c4e-c4ce5b7f3efc.png)
+![image](https://user-images.githubusercontent.com/62655613/229295865-fb9d4f58-7b54-42f0-b749-5bfddfafd497.png)
 
+#### DNS add 
+![image](https://user-images.githubusercontent.com/62655613/229295913-601d6023-a16c-4166-bbec-bfba3a2c9920.png)
+![image](https://user-images.githubusercontent.com/62655613/229295956-e6e76ed3-8109-40aa-a087-c22585500dbe.png)
+![image](https://user-images.githubusercontent.com/62655613/229295982-e2058f18-61d6-4770-bafe-5f10f2fbe330.png)
 
 ```bash
 cd root-ca
