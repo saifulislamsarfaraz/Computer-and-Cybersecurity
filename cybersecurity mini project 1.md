@@ -366,3 +366,6 @@ sudo snort -A console -q -u snort -g snort -c /etc/snort/snort.conf -i enp0s3
 ```bash
 sudo apt install hping3 -y
 ```
+```bash
+sudo hping3 -S --flood -V -p 80 192.168.246.6
+```
