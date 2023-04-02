@@ -107,14 +107,14 @@ sudo systemctl restart bind9.service
 ```bash
 sudo nano /etc/resolv.conf
 ```
-copy and paste ... to ...
-........................................
+After execution this command paste bellow code
+
 ```bash
 nameserver 192.168.246.6
 options edns0 trust-ad
 search localdomain
 ```
-........................................
+To save the file amd back previous 
 CTRL+O CTRL+X for exit
 
 ![image](https://user-images.githubusercontent.com/62655613/229294629-467de732-2ba9-4a2b-a05f-79db1ca6e7b3.png)
@@ -122,8 +122,8 @@ CTRL+O CTRL+X for exit
 ```bash
 sudo nano /etc/named.conf
 ```
-copy and paste.... to.....
-..........................................................................................................
+After execution name configuration paste the bellow code
+
 ```bash
 //
 //named.conf
@@ -183,7 +183,7 @@ systemctl enable named
 systemctl start named
 ```
 ```bash
-sudo nano /etc/bind/saifulislamsarfaraz.com.zone
+sudo nano /etc/bind/hackssl.com.zone
 ```
 copy paste ...... to ......
 .........................................................................................
