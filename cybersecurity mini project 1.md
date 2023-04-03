@@ -350,7 +350,13 @@ systemctl enable named
 Browser site with Https:
 
 ![image](https://user-images.githubusercontent.com/62655613/229296955-f4690c01-87e1-4e3e-b6af-40dd0cb632c8.png)
-
+# Firewall
+```bash
+sudo ufw default deny
+sudo ufw allow 53
+sudo ufw allow 80
+sudo ufw allow 443
+```
 # IDS
 ### Step 1
 ```bash
